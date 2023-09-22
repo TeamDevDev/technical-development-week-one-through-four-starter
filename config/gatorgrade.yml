@@ -1,0 +1,123 @@
+# perform checks on a file
+- images/jupyter_screenshot.png:
+    - description: Ensure that the screenshot file called jupyter_screenshot.png exists in the images/ directory
+      check: ConfirmFileExists
+- README.md:
+    - description: Ensure that the README.md file exists in the main project directory
+      check: ConfirmFileExists
+- writing/review.md:
+    - description: Ensure that the review.md file exists in the writing/ directory
+      check: ConfirmFileExists
+    - description: Complete all TODOs, remove the TODO markers, and rewrite comments for review.md
+      check: MatchFileFragment
+      options:
+        fragment: TODO
+        count: 0
+        exact: true
+    - description: Delete the 'Add Your Name Here' prompt in the review file
+      check: MatchFileFragment
+      options:
+        fragment: "Add Your Name Here"
+        count: 0
+        exact: true
+    - description: Add a reference to the first technical précis article that you wrote
+      check: MatchFileFragment
+      options:
+        fragment: "I Wrote Article 1 URL:"
+        count: 1
+        exact: true
+    - description: Add a reference to the second technical précis article that you wrote
+      check: MatchFileFragment
+      options:
+        fragment: "I Wrote Article 2 URL:"
+        count: 1
+        exact: true
+    - description: Add a reference to the third technical précis article that you wrote
+      check: MatchFileFragment
+      options:
+        fragment: "I Wrote Article 3 URL:"
+        count: 1
+        exact: true
+    - description: Add a reference to the first technical précis article that you reviewed
+      check: MatchFileFragment
+      options:
+        fragment: "I Reviewed Article 1 URL:"
+        count: 1
+        exact: true
+    - description: Add a reference to the second technical précis article that you reviewed
+      check: MatchFileFragment
+      options:
+        fragment: "I Reviewed Article 2 URL:"
+        count: 1
+        exact: true
+    - description: Add a reference to the third technical précis article that you reviewed
+      check: MatchFileFragment
+      options:
+        fragment: "I Reviewed Article 3 URL:"
+        count: 1
+        exact: true
+    - description: Preserve the first part of the writing template for learning objective attainment
+      check: MatchFileFragment
+      options:
+        fragment: "When I was working on"
+        count: 1
+        exact: true
+    - description: Preserve the second part of the writing template for learning objective attainment
+      check: MatchFileFragment
+      options:
+        fragment: "I did not understand"
+        count: 1
+        exact: true
+    - description: Preserve the third and fifth part of the writing template for learning objective attainment
+      check: MatchFileFragment
+      options:
+        fragment: "Now I know"
+        count: 2
+        exact: true
+    - description: Preserve the fourth part of the writing template for learning objective attainment
+      check: MatchFileFragment
+      options:
+        fragment: "I revealed the gap in my understanding by"
+        count: 1
+        exact: true
+    - description: Preserve the sixth part of the writing template for learning objective attainment
+      check: MatchFileFragment
+      options:
+        fragment: "To demonstrate my improved understanding"
+        count: 1
+        exact: true
+    - description: Provide the reference to the learning objectives section of the course web site
+      check: MatchFileFragment
+      options:
+        fragment: "https://developerdevelopment.com/syllabus/#learning-objectives"
+        count: 1
+        exact: true
+    - description: Write a minimum number of meaningful words in the reflection
+      check: CountFileWords
+      options:
+        count: 500
+        exact: false
+    - description: Make a direct reference to the PNG file that contains the screenshot of running the Jupyter Lab server
+      check: MatchFileFragment
+      options:
+        fragment: "![Jupyter Screenshot](../images/jupyter_screenshot.png)"
+        count: 1
+        exact: true
+    - description: Confirm that the markdown file has at least a minimum number of headers
+      check: CountMarkdownTags
+      options:
+        tag: heading
+        count: 10
+        exact: false
+    - description: Confirm that the markdown file has the correct number of fenced code blocks
+      check: CountMarkdownTags
+      options:
+        tag: code_block
+        count: 1
+        exact: false
+
+# confirm a suitable number of commit messages
+- description: Have at least a specific minimum of commits in repository
+  check: CountCommits
+  options:
+    count: 10
